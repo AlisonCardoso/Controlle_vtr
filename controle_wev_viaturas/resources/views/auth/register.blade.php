@@ -28,7 +28,38 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
+        <!-- usuario -->
+        <div class="mt-4">
+            <x-input-label for="username" :value="__('Username')" />
+
+            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                            type="text"
+                            name="username" required autocomplete="mew-username />
+
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="cpf" :value="__('CPF')" />
+
+            <x-text-input id="cpf" class="block mt-1 w-full"
+                            type="text"
+                            name="CPF" required autocomplete="new-cpf" />
+
+            <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
+        </div>
+ <!-- cpf -->
+ <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
+
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
