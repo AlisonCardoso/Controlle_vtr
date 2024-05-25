@@ -15,6 +15,25 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+        <!-- Username-->
+        <div class="mt-4">
+            <x-input-label for="username" :value="__('Username')" />
+
+            <x-text-input id="username" class="block mt-1 w-full"
+                            type="text"
+                            name="username"
+                            required autocomplete="new-username" />
+
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+         <!-- cpf-->
+         <div class="mt-4" x-data>
+            <x-input-label for="cpf" :value="__('CPF')" />
+
+            <x-text-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" autocomplete="new-cpf" x-mask="999.999.999-99" placeholder="999.999.999-99"/>
+
+            <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
+        </div>
 
         <!-- Password -->
         <div class="mt-4">
@@ -23,7 +42,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                             autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
