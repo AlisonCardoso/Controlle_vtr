@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\User;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public readonly User $user;
+    public function __construct()
+    {
+        $this->user = new User();
+    }
     public function index()
     {
-        //
+        $users =$this->user->all();
+       return view('user.users');
     }
 
     /**

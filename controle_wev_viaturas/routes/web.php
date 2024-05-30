@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\UserController;
+use App\Models\Address;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +20,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware('auth')->group(function () {
-    Route::get('/address', [ProfileController::class, 'edit'])->name('address.edit');
-    Route::patch('address', [ProfileController::class, 'update'])->name('address.update');
-    Route::delete('/address', [ProfileController::class, 'destroy'])->name('address.destroy');
+    
+
+   
+    Route::get('/users', [UserController::class,'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class,'create'])->name('users.create');
+    Route::post('/users', [UserController::class,'store'])->name('users.store');
+    Route::get('/users{user}', [UserController::class,'show'])->name('users.show');
+    Route::get('/users{user}/edit', [UserController::class,'edit'])->name('users.edit');
+    Route::put('/users{user}', [UserController::class,'update'])->name('users.update');
+    Route::delete('/users{user}', [UserController::class,'destroy'])->name('users.destroy');
 });
 
 

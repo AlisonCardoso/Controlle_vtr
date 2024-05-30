@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $fillable = ['rua', 'cidade', 'pais', 'user_id'];
+    protected $fillable = ['address', 'number','district','cep', 'complement', 'state', 'complement','user_id'];
 
     use HasFactory;
 
@@ -16,3 +16,5 @@ class Address extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 }
+
+
