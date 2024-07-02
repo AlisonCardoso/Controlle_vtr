@@ -29,15 +29,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    
-                    @if (isset($errors) && count($errors)>0) 
-                    <div class="text-center mt-4 mb-4 p-2 alert-danger"> 
+
+                    @if (isset($errors) && count($errors)>0)
+                    <div class="text-center mt-4 mb-4 p-2 alert-danger">
                         @foreach ($errors->all() as $erro)
-                        {{$erro}}      
+                        {{$erro}}
                         @endforeach
                     </div>
                     @endif
-                 
+                    <h1 class="text-center"> @if (isset($product->id)) Editar @else  Cadastrar Novo
+
+
+                    @endif
+
+                        </h1>
+
                     <form name="formCad" id="formCad" method="post" action="{{ route('products.store') }}" class="mt-5 space-y-5">
                         @csrf
 

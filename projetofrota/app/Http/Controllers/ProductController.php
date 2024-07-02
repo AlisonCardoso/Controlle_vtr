@@ -63,7 +63,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $products = $this->product->find( $product);
+        $categories = $this->category->all();
+        return view('product.edit' , compact('categories'));
+        //return view('product.create' , compact('products'));
     }
 
     /**
@@ -71,7 +74,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->product->update([
+
+            'name' =>$request->name,
+            'image'=>$request->image,
+            'description'=>$request->description,
+            'category_id'=>$request-> category_id
+
+        ]);
     }
 
     /**
