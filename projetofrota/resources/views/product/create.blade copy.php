@@ -5,8 +5,6 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-</x-app-layout>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-5" >
@@ -27,6 +25,10 @@
     </div>
 
 
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
 
                     @if (isset($errors) && count($errors)>0)
                     <div class="text-center mt-4 mb-4 p-2 alert-danger">
@@ -81,10 +83,13 @@
                     </form>
 
                 </div>
+            </div>
+        </div>
+    </div>
 
 
 
-
+</x-app-layout>
 
 
 
@@ -97,7 +102,7 @@ function previewImage(input) {
         var reader = new FileReader();
 
         reader.onload = function(e) {
-            $("#imagePreview").css('background-image', 'url(' +e.target.result +' )'));
+            $("#imagePreview").css('background-image', 'url(' +e.target.result +' )');
             $("#imagePreview").hide();
             $("#imagePreview").fadeIn(700);
         }

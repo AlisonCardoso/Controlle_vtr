@@ -27,7 +27,7 @@
 
                         </tr>
                     </thead>
-                    @foreach ($products as $product )
+                    @foreach ($products as $product)
                     @php
                         $category=$products->find( $product->id)->category;
                     @endphp
@@ -50,6 +50,10 @@
 
                         </th>
                     </tr>
+
+
+
+
 
                     @endforeach
                     <tbody>

@@ -26,8 +26,10 @@
 
                         </tr>
                     </thead>
-                    @foreach ($categories as $category )
-                    <tr>
+
+                   @forelse ($categories as $category)
+
+                   <tr>
                         <th scope="row">{{$category->id}}</th>
                         <th scope="row">{{$category->name}}</th>
                         <th scope="row">{{$category->description}}</th>
@@ -38,11 +40,13 @@
                           <a class="btn btn-info" href="{{ route('categories.show', $category->id) }}">{{ __('Mostrar') }}</a>
                           <a class="btn btn-dark" href="{{ route('categories.edit', $category->id) }}">{{ __('Editar') }}</a>
                           <a class="btn btn-danger" href="{{ route('categories.destroy', $category->id) }}">{{ __('Excluir') }}</a>
-
                         </th>
                     </tr>
-
-                    @endforeach
+                     @empty
+                    <tr>
+                        <td colspan="5">Sem Categorias Cadastradas</td>
+                  </tr>
+                   @endforelse
                     <tbody>
                 </div>
 

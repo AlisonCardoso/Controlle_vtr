@@ -17,7 +17,8 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = $this->product->all();
+       // $products = $this->product->all();
+       $products = Product::latest('id')->get();
         return view('product.index' , compact('products'));
     }
 
@@ -28,7 +29,9 @@ class ProductController extends Controller
     {
         $products = $this->product->all();
         $categories = $this->category->all();
-        return view('product.create' , compact('categories'));
+       $title = "Adicionar novo produto";
+       // return view('product.create' , compact('title'));
+      return view('product.create' , compact('categories'));
     }
 
     /**
@@ -44,6 +47,9 @@ class ProductController extends Controller
             'category_id'=>$request-> category_id
 
         ]);
+
+
+
     }
 
     /**
@@ -82,7 +88,33 @@ class ProductController extends Controller
             'category_id'=>$request-> category_id
 
         ]);
-    }
+
+            if ($request->hasfile('image')) {
+                $filePath = public_path('uploads');
+                $file = $request->file('image');
+                $file_name = time() . $file->getClientOriginalName();
+                $file->move($filePath, $file_name);
+                // delete old photo
+                if (!is_null($update->image)) {
+                    $oldImage = public_path('uploads/' . $update->image);
+                    if (File::exists($oldImage)) {
+                        unlink($oldImage);
+                    }
+                }
+                $update->image = $file_name;
+            }
+
+            $result = $update->save();
+            Session::flash('success', 'User updated successfully');
+            return redirect()->route('user.index');
+        }
+
+
+
+
+
+
+    
 
     /**
      * Remove the specified resource from storage.

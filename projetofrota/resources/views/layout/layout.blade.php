@@ -12,6 +12,7 @@
 <body>
     <div class="container">
         @yield('content')
+        @tack('js')
     </div>
 </body>
 </html>
