@@ -28,6 +28,9 @@
                 <li>
                     <a href="{{ route('workshops.create') }}" class="nav-link active px-2 text-white">Oficinas</a>
                 </li>
+                <li>
+                    <a href="{{ route('companies.create') }}" class="nav-link active px-2 text-white">Companhia</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Link</a>
                 </li>
@@ -39,7 +42,7 @@
                   data-bs-toggle="dropdown" aria-expanded="false"><span class=""></span>
                     Oficinas
                   </a>
-                 
+
                     <li>
                       <hr class="dropdown-divider">
                     </li>
