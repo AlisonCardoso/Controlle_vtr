@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RegionalCommand extends Model
+class Company extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'pelotao','sub_command_id'];
+
     public function sub_command()
     {
-        return $this->hasMany(SubCommand::class);
+        return $this->belongsTo(RegionalCommand::class);
     }
+
 }
