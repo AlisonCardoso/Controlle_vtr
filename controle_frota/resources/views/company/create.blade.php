@@ -24,22 +24,30 @@
                             <div class="col-md-4">
 
                             <label for="regional_command_id"class="form-label h5">COMANDO REGIONAL</label>
-                            <select name="regional_command_id" id="regional_command_id" class="form-select">
+                            <select name="regional_command_id" id="regional_command_id" class="form-select select2">
                                 <option value="">Selecione</option>
                                 @foreach ($commands as $command )
                                 <option value="{{$command->id}}">{{$command->name}}</option>
                                 @endforeach
                             </select>
+
                             </div>
                             <div class="col-md-4">
                                 <label for="sub_command_id" class="form-label h5">BATALHÃO DE POLICIA MILITAR</label>
-                                    <select name="sub_command_id"  id="sub_command_id" class="form-select">
-                                        <option selected>Selecione</option>
-                                        @foreach ($sub_commands as $sub_command)
-                                        <option value="{{$sub_command->id}}">{{$sub_command->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                    <select name="sub_command_id"  id="sub_command_id" class="form-select select2">
+                                     <option value="">Selecione</option>
+                        @forelse ($sub_commands as $sub_command)
+                            <option value="{{ $sub_command->id }}"
+                                {{ old('sub_command_id') == $sub_command->id ? 'selected' : '' }}> {{ $sub_command->name }}</option>
+
+                        @empty
+                            <option value="">Nenhum Batalhão cadastrado</option>
+                        @endforelse
+                    </select>
+                            </div>
+                            
+
+
                                     <div class="col-md-6">
                                 <label for="name" class="form-label h5">Nome da Companhia</label>
                                 <input value="@if (isset($edit->id)) {{ $edit->name }}@else {{ old('name') }} @endif" type="text" class="@error('name')is-invalid @enderror form-control form-control-lg " id="name"
