@@ -13,7 +13,7 @@ class Company extends Model
 
     public function sub_command()
     {
-        return $this->belongsTo(RegionalCommand::class);
+        return $this->belongsTo(subCommand::class);
     }
 
 }

@@ -7,6 +7,12 @@ use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\RegionalCommand;
 use App\Models\SubCommand;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use PhpOffice\PhpWord\PhpWord;
 
 class CompanyController extends Controller
 {
@@ -20,9 +26,18 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $this-> sub_command =  SubCommand::all();
-        $this->company = Company::all();
-        return view('company.index');
+
+
+
+
+            $title = "Lista de companhias";
+            $command =  RegionalCommand::orderBy('name', 'ASC')->get();
+            $sub_command =  SubCommand::orderBy('name', 'ASC')->get();
+            $companies =  Company::orderBy('name', 'ASC')->get();
+
+
+            return view('company.index', compact('title', 'command','sub_command','companies'));
+
     }
 
     /**
@@ -30,10 +45,19 @@ class CompanyController extends Controller
      */
     public function create()
 
-    { $title='Nova Sub Unidade';
+    {  $title='Nova Sub Unidade';
+        $commands =RegionalCommand::all();
+       $sub_commands= SubCommand::all();
+
+
+
+        return view('company.create', compact('title', 'commands','sub_commands'));
+        /*
+        $title='Nova Sub Unidade';
         $commands =RegionalCommand::all();
         $sub_commands = SubCommand::all();
         return view('company.create', compact('title', 'commands','sub_commands'));
+        */
     }
 
     /**
@@ -41,9 +65,16 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        //
-    }
 
+
+            DB::beginTransaction();
+            $company  =Company::create($request->all());
+
+            DB::commit();
+            Session::flash('success', 'companhia registrada com successo');
+            return redirect()->route('companies.index');
+
+    }
     /**
      * Display the specified resource.
      */

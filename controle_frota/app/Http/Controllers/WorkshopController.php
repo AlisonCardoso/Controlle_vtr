@@ -65,19 +65,29 @@ class WorkshopController extends Controller
     public function store(StoreWorkshopRequest $request)
 
     {
-        $request->validated();
+
+        try {
 
 
-        DB::beginTransaction();
+
+       // DB::beginTransaction();
 
         $workshop = Workshop::create($request->all());
         $workshop->address()->create($request->all());
 
 
-        DB::Commit();
+      //  DB::Commit();
 
-        Session::flash('success', 'Usuario registrado com successo');
+        Session::flash('success', 'Oficina registrada com successo');
         return redirect()->route('workshops.index');
+    } catch (Exception $e) {
+
+        // Salvar log
+        Log::warning('Conta não editada', ['error' => $e->getMessage()]);
+
+        // Redirecionar o usuário, enviar a mensagem de erro
+        return back()->withInput()->with('error', 'Conta não editada!');
+    }
 
     }
 
