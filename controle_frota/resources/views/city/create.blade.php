@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layouts.admin')
 @section('content')
 <div class="bg-dark py-3">
     <h3 class="text-white text-center">cadastro de cidades</h3>

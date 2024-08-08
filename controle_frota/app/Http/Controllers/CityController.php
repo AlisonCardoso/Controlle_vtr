@@ -3,16 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use PhpOffice\PhpWord\PhpWord;
 
 class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
+
+        $title='Nova Sub Unidade';
+        $states =State::all();
+        $cities = City::all();
+
+
+
+
+        return view('city.index', compact('title', 'states', 'cities'));
     }
 
     /**
@@ -20,7 +37,11 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::orderBy('name', 'ASC')->get();
+        $cities = City::all();
+        return view('city.create',compact('cities', 'states'));
+
+
     }
 
     /**
@@ -28,12 +49,32 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+
+
+
+        DB::beginTransaction();
+
+        $cities = City::create($request->all());
+
+
+       DB::Commit();
+
+        Session::flash('success', 'Oficina registrada com successo');
+        return redirect()->route('city.index');
+            }
+             catch (Exception $e) {
+
+        // Salvar log
+        Log::warning('Conta não editada', ['error' => $e->getMessage()]);
+
+        // Redirecionar o usuário, enviar a mensagem de erro
+        return back()->withInput()->with('error', 'Conta não editada!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    }
+
     public function show(City $city)
     {
         //

@@ -23,13 +23,18 @@
                   <a class="nav-link active" aria-current="page" href="{{route('contas.index')}}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ route('contas.index') }}" class="nav-link active px-2 text-white">Contas</a>
+                    <a href="{{ route('contas.create') }}" class="nav-link active px-2 text-white">Contas</a>
                 </li>
                 <li>
                     <a href="{{ route('workshops.create') }}" class="nav-link active px-2 text-white">Oficinas</a>
                 </li>
                 <li>
                     <a href="{{ route('companies.create') }}" class="nav-link active px-2 text-white">Companhia</a>
+
+                </li>
+                <li>
+                    <a href="{{ route('cities.create') }}" class="nav-link active px-2 text-white">Cidades</a>
+                    
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Link</a>

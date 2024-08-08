@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Workshop;
 use App\Http\Requests\StoreWorkshopRequest;
 
-use App\Models\User;
+
 use Exception;
 use App\Models\Address;
 use App\Models\State;
 use App\Models\City;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\File;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -45,24 +45,23 @@ class WorkshopController extends Controller
         $title = "Nova Oficina";
 
          $states = State::orderBy('name', 'ASC')->get();
+         $cities = City::all();
          $address = Address::all();
 
 
-        $cities = City::all();
-        // $cities = City::where('state_id', $request->state_id)->orderBy('name')->get();
-        // $cities = City::with('state')->get();
+
 
 
          $workshops = $this->workshop->all();
           return view('workshop.create',compact('workshops',  'title','address','states','cities'));
-         //return view('workshop.criar_editar',compact('workshops', 'title'));
+
 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkshopRequest $request)
+    public function store(Request $request)
 
     {
 
@@ -70,17 +69,18 @@ class WorkshopController extends Controller
 
 
 
-       // DB::beginTransaction();
+        DB::beginTransaction();
 
         $workshop = Workshop::create($request->all());
         $workshop->address()->create($request->all());
 
 
-      //  DB::Commit();
+       DB::Commit();
 
         Session::flash('success', 'Oficina registrada com successo');
         return redirect()->route('workshops.index');
-    } catch (Exception $e) {
+            }
+             catch (Exception $e) {
 
         // Salvar log
         Log::warning('Conta não editada', ['error' => $e->getMessage()]);

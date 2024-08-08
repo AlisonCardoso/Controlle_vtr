@@ -12,29 +12,17 @@
     </div>
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <h1>batalhao</h1>
-                <div class="card-header">Dashboard</div>
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                     @endif
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <div class="card-body">
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Sigla</th>
-                    
+                    <th scope="col">COMPANHIA</th>
+                    <th scope="col">ABREVIAÇÃO</th>
+                    <th scope="col">BATALHÃO</th>
+                    <th scope="col">COMANDO REGIONAL</th>
+
                     <th scope="col" class="text-center">Ações</th>
                 </tr>
             </thead>
@@ -42,8 +30,10 @@
                 @forelse ($companies as $company)
                     <tr>
                         <td>{{ $company->id }}</td>
-                        <td>{{ $company->nome }}</td>
+                        <td>{{ $company->name }}</td>
                         <td>{{ $company->slug}}</td>
+                        <td>{{ $company->sub_command->slug}}</td>
+                        <td>{{ $company->sub_command->regional_command->slug}}</td>
 
 
 

@@ -13,6 +13,7 @@ use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use PhpOffice\PhpWord\PhpWord;
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -45,30 +46,32 @@ class CompanyController extends Controller
      */
     public function create()
 
-    {  $title='Nova Sub Unidade';
+    {
+
+
+         $title='Nova Sub Unidade';
         $commands =RegionalCommand::all();
        $sub_commands= SubCommand::all();
 
 
 
+
         return view('company.create', compact('title', 'commands','sub_commands'));
-        /*
-        $title='Nova Sub Unidade';
-        $commands =RegionalCommand::all();
-        $sub_commands = SubCommand::all();
-        return view('company.create', compact('title', 'commands','sub_commands'));
-        */
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCompanyRequest $request)
+    public function store(Request $request)
     {
 
 
             DB::beginTransaction();
             $company  =Company::create($request->all());
+
+
+
 
             DB::commit();
             Session::flash('success', 'companhia registrada com successo');
@@ -80,7 +83,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+
     }
 
     /**

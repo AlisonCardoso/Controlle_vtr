@@ -32,7 +32,7 @@ class StoreCompanyRequest extends FormRequest
     {
         return[
             'name.required' => 'Campo nome é obrigatório!',
-            'sub_command.required' => 'Campo Batalhão é opcional',
+            
 
 
 
@@ -40,6 +40,6 @@ class StoreCompanyRequest extends FormRequest
 
 
         ];
-    
+
     }
 }
