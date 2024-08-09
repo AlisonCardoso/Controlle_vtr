@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             SeederComandoRegional::class,
             SeederBatalhao::class,
             SeederCidade::class,
+            SeederType_vehicle::class,
+            SeederCompanies::class,
+            
         ]);
 
 

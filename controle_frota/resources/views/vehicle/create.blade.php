@@ -1,75 +1,95 @@
-@extends('layout.header')
+@extends('layouts.admin')
 
 @section('content')
-
-
-
-<div class="bg-gray py-4">
-    <h3>{{ $title }}</h3>
-</div>
 <div class="container">
-    <div class="row d-flex justify-content-center mt-4 mb-lg-4">
-        <div class="col md-10 d-flex justify-content-end">
-            <a href="{{route('vehicles.index')}}" class="btn btn-dark "> voltar</a>
-        </div>
-    </div>
 
-                         <form class="form1" method="post" action="@if (isset($edit->id)) {{ route('vehicles.update', ['id' => $edit->id]) }}@else{{ route('vehicles.store') }} @endif" enctype="multipart/form-data">
+
+    <div class="card mt-5 mb-4 border-light shadow">
+
+        <div class="card-header mt-5 d-flex justify-content-between">
+
+            <span>
+
+
+                <a href="{{ route('vehicles.index') }}" class="btn btn-info btn-sm ">Lista de veículos</a>
+
+                </span>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+                         <form class="row g-3"  method="post" action="@if (isset($edit->id)) {{ route('vehicles.update', ['id' => $edit->id]) }}@else{{ route('vehicles.store') }} @endif" enctype="multipart/form-data">
                                 @csrf
 
-                       <div class="card">
-                       <div class="card-body  row g-3">
+                      
 
-                            <div>
+                        <div class="col-md-6 col-sm-6">
+                            <label for="sub_comand_id" class="form-label h5">OPM/Batalhão</label>
+                            <select name="sub_comand_id"  id="sub_comand_id" class="form-select select2">
+                                <option selected>Selecione</option>
+                                @foreach ($sub_command as $subcommand)
+                                <option value="{{$subcommand->id}}">{{$subcommand->slug}}</option>
+                                @endforeach
+                                </select>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <label for="company_id" class="form-label h5">Companhia</label>
+                                    <select name="company_id"  id="company_id" class="form-select select2">
+                                        <option selected>Selecione</option>
+                                        @foreach ($companies as $company)
+                                        <option value="{{$company->id}}">{{$company->slug}}</option>
+                                        @endforeach
+                                        </select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label for="vehicle_type_id" class="form-label h5">Tipo do Veículo</label>
+                                            <select name="vehicle_type_id"  id="vehicle_type_id" class="form-select select2">
+                                                <option selected>Selecione</option>
+                                                @foreach ($vehicle_type as $row)
+                                                <option value="{{$row->id}}">{{$row->type}}</option>
+                                                @endforeach
+                                                </select>
+                                                </div>
 
-                                <input id="user_id" name="user_id" type="hidden" class="mt-1 block w-full" autocomplete="user_id" value="{{Auth::user()->id}}" />
-
-                            </div>
-
-
-
-                           'characterized',
-                           'active',
-
-                            'price'
 
 
 
 
-
-
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <label for="brand" class="form-label h5">Marca</label>
                                     <input value="@if (isset($edit->id)) {{ $edit->brand }}@else {{ old('brand') }} @endif" type="text" class="@error('brand')is-invalid @enderror form-control form-control-lg " id="brand'"
                                      autocomplete="brand" required  name="brand">
                                     @error('brand')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
                                 </div>
 
-                            <div class=" col-md-6">
+                            <div class=" col-md-6 col-sm-6">
                                 <label for="model" class="form-label h5">Modelo</label>
                                 <input value="@if (isset($edit->id)) {{ $edit->model }}@else {{ old('model') }} @endif" type="text" class="@error('model')is-invalid @enderror form-control form-control-lg " id="model"
                                 autocomplete="model" required  name="model">
                                 @error('model')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
                             </div>
-                            <div class="mb-3 col-md-4">
+                            <div class="col-md-3 col-sm-3">
                                 <label for="prefix" class="form-label h5">Prefixo</label>
                                 <input value="@if (isset($edit->id)) {{ $edit->prefix }}@else {{ old('prefix') }} @endif" type="text" class="@error('prefix')is-invalid @enderror form-control form-control-lg " id="prefix"
                                 autocomplete="prefix" required placeholder="CNPJ" name="prefix">
                                 @error('prefix')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
                             </div>
 
-                                <div class="mb-3 col-md-3">
+                                <div class="col-md-3 col-sm-3">
                                     <label for="plate" class="form-label h5">Placa</label>
                                     <input value="@if (isset($edit->id)) {{ $edit->plate }}@else {{ old('plate') }} @endif" type="text" class="@error('plate')is-invalid @enderror form-control form-control-lg " id="plate"
                                      autocomplete="plate" required placeholder="plate" name="plate">
                                     @error('plate')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
                                 </div>
 
-                                <div class="mb-3 col-md-2">
-                                    <label for="patrimonio" class="form-label h5">Nº de Patrimônio</label>
-                                    <input value="@if (isset($edit->id)) {{ $edit->patrimonio }}@else {{ old('patrimonio') }} @endif" type="text" class="@error('patrimonio')is-invalid @enderror form-control form-control-lg " id="patrimonio"
-                                     autocomplete="patrimonio" required placeholder="patrimonio" name="patrimonio">
-                                    @error('patrimonio')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
+                                <div class="col-md-3 col-sm-3">
+                                    <label for="asset_number" class="form-label h5">Nº de Patrimônio</label>
+                                    <input value="@if (isset($edit->id)) {{ $edit->asset_number }}@else {{ old('asset_number') }} @endif" type="text" class="@error('asset_number')is-invalid @enderror form-control form-control-lg " id="asset_number"
+                                     autocomplete="asset_number" required placeholder="asset_number" name="asset_number">
+                                    @error('asset_number')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
                                 </div>
                                 <div class=" mb-3 col-md-3">
                                         <label for="year" class="form-label h5">Ano de Fabricação</label>
@@ -79,88 +99,54 @@
                                         @error('year')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
                                 </div>
 
+                                <div class="col-md-3 col-sm-3">
+                                    <label for="odometer" class="form-label h5">Hodômetro</label>
+                                    <input value="@if (isset($edit->id)) {{ $edit->odometer }}@else {{ old('odometer') }} @endif"
+                                    type="text" class="@error('odometer')is-invalid @enderror form-control form-control-lg " id="odometer"
+                                     autocomplete="odometer" placeholder="odometer" name="odometer">
+                                    @error('odometer')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
+                            </div>
+                            <div class="col-md-3 col-sm-3">
                                 <label for="price" class="form-label h5">Preço da Fipe</label>
                                 <input value="@if (isset($edit->id)) {{ $edit->price }}@else {{ old('price') }} @endif"
                                 type="text" class="@error('price')is-invalid @enderror form-control form-control-lg " id="price"
-                                 autocomplete="price" required placeholder="price" name="price">
+                                 autocomplete="price" placeholder="price" name="price">
                                 @error('price')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
                         </div>
                         </div>
 
+                    </div>
+                    
+                    div class="custom-check form-check-inline">
+  <input class="custom-check-input" type="checkbox" value="" id="Checkbox1" />
+  <label class="custom-check-label" for="Checkbox1">
+    Checkbox 1
+  </label>
+</div>
 
+<div class="custom-check form-check-inline">
+  <input class="custom-check-input" type="checkbox" value="" id="Checkbox2" />
+  <label class="custom-check-label" for="Checkbox2">
+    Checkbox 2
+  </label>
+</div>
 
+<div class="custom-radio">
+    <input type="radio" id="customRadio1" name="customRadio" class="custom-radio-input" />
+    <label class="custom-control-label" for="customRadio1">radio1</label>
+  </div>
+  <div class="custom-radio">
+    <input type="radio" id="customRadio2" name="customRadio" class="custom-radio-input" />
+    <label class="custom-control-label" for="customRadio2">radio2</label>
+  </div>
 
+                    
 
-
-                            <div class="col-md-4">
-                                <label for="city_id" class="form-label h5">Comando Regional</label>
-                                <select name="city_id"  id="city_id" class="form-select">
-                                    <option selected>Selecione</option>
-                                    @foreach ($regional_commands as $regional_command)
-                                    <option value="{{$regional_command->id}}">{{$regional_command->slug}}</option>
-                                    @endforeach
-                                    </select>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label for="city_id" class="form-label h5">OPM/Batalhão</label>
-                                        <select name="city_id"  id="city_id" class="form-select">
-                                            <option selected>Selecione</option>
-                                            @foreach ($sub_commands as $sub_command)
-                                            <option value="{{$sub_command->id}}">{{$sub_command->slug}}</option>
-                                            @endforeach
-                                            </select>
-                                            </div>
-
-
-
-                            <div class="form-group col-md-4">
-                                <label for="cep" class="form-label h5">CEP</label>
-                                <input value="@if (isset($edit->id)) {{ $edit->cep }} @else {{ old('cep') }} @endif" type="text"
-                                class="@error('cep')is-invalid @enderror form-control form-control-lg " id="cep" autocomplete="cep" required  name="cep">
-                                @error('cep')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
-                                </div>
-
-
-
-
-
-                            <div class="form-group col-md-8">
-                                <label for="name" class="form-label h5">Endereço</label>
-                                <input value="@if (isset($edit->id)) {{ $edit->address }} @else {{ old('address') }} @endif"type="text"
-                                class="@error('address')is-invalid @enderror form-control form-control-lg " id="address"autocomplete="address" required  name="address">
-                                @error('address')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
-
-
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                <label for="number" class="form-label h5">Número</label>
-                                <input value="@if (isset($edit->id)) {{ $edit->number }} @else {{ old('number') }} @endif"type="text"
-                                class="@error('number')is-invalid @enderror form-control form-control-lg " id="number" autocomplete="-new-number" required placeholder="Número" name="number">
-                                @error('number')<p class="invalid-feedback text-danger">{{ $message}}</p>  @enderror
-                            </div>
-                            <div class="form-group col-md-8">
-                                <label for="district" class="form-label h5">Bairro</label>
-                                <input value="@if (isset($edit->id)) {{ $edit->neighborhood }} @else {{ old('district') }} @endif"type="text"
-                                class="@error('district')is-invalid @enderror form-control form-control-lg " id="district"
-                                autocomplete="district" required placeholder="Bairro" name="district">
-                                @error('district')<p class="invalid-feedback text-danger">{{ $message}}</p > @enderror
-                                </div>
-                                <div class="form-group col-md-4">
-                                <label for="complement" class="form-label h5">Complemento</label>
-                                <input value="@if (isset($edit->id)) {{ $edit->complement }} @else {{ old('complement') }} @endif" type="text"
-                                 class="@error('complement')is-invalid @enderror form-control form-control-lg " id="complement" autocomplete="complement"  name="complement">
-                                @error('complement')<p class="invalid-feedback text-danger">{{ $message}}</p> @enderror
-                                </div>
-
-
-                      </div>
 
 
                         <div class="mb-4 justify-content-center">
                              <input type="submit" class="btn btn-primary" value="Cadastrar">
-                            <a class="btn btn-danger" href="{{ route('workshops.index') }}">Cancelar</a>
+                            <a class="btn btn-danger" href="{{ route('vehicles.index') }}">Cancelar</a>
                         </div>
 
                         </form>

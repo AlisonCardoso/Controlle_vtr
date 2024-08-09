@@ -21,7 +21,7 @@ use PhpOffice\PhpWord\PhpWord;
 class WorkshopController extends Controller
 {
     private  $workshop;
-        private  $address;
+    private  $address;
 
     public function __construct()
     {
@@ -47,11 +47,6 @@ class WorkshopController extends Controller
          $states = State::orderBy('name', 'ASC')->get();
          $cities = City::all();
          $address = Address::all();
-
-
-
-
-
          $workshops = $this->workshop->all();
           return view('workshop.create',compact('workshops',  'title','address','states','cities'));
 

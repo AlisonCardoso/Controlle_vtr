@@ -20,7 +20,7 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-        
+
 
         $title='Nova Sub Unidade';
         $states =State::all();
@@ -62,7 +62,7 @@ class CityController extends Controller
        DB::Commit();
 
         Session::flash('success', 'Oficina registrada com successo');
-        return redirect()->route('city.index');
+        return redirect()->route('cities.index');
             }
              catch (Exception $e) {
 

@@ -2,6 +2,7 @@
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\WorkshopController;
+use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CityController;
@@ -24,7 +25,7 @@ Route::resources(['contas'=> ContaController::class]);
  //   Route::resources(['products'=> ProductController::class]);
     Route::resources(['cities'=> CityController ::class]);
     Route::resources(['states'=> StateController ::class]);
-  //  Route::resources(['vehicles'=> VehicleController ::class]);
+    Route::resources(['vehicles'=> VehicleController ::class]);
     Route::resources(['subcommands'=> SubCommandController ::class]);
     Route::resources(['companies'=> CompanyController::class]);
 
