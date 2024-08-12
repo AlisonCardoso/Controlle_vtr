@@ -20,7 +20,7 @@
                        <div class="card">
                        <div class="card-body  row g-3">
 
-                          
+
 
 
 
@@ -67,7 +67,7 @@
                                 </div>
                         </div>
 
-
+                        @livewire('location-form')
 
                         <div class="card-body row g-4">
                             <div class="col-md-4">
@@ -141,7 +141,7 @@
                             <a class="btn btn-danger" href="{{ route('workshops.index') }}">Cancelar</a>
                         </div>
 
-                        </form> 
+                        </form>
                         <script>
                          /*  document.addEventListner('DOMContentLoaded', function(){
 

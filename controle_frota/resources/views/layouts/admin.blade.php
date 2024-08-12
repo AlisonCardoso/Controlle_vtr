@@ -29,6 +29,8 @@
 
 <body>
 
+    @livewireStyles
+    @livewireScripts
 
 
     @include('layout.sidebar')
