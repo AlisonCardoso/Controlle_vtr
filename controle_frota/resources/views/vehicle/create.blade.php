@@ -24,8 +24,8 @@
                          <form class="row g-3"  method="post" action="@if (isset($edit->id)) {{ route('vehicles.update', ['id' => $edit->id]) }}@else{{ route('vehicles.store') }} @endif" enctype="multipart/form-data">
                                 @csrf
 
-
-
+@livewire('CreateCompany')
+                          {{--  
                         <div class="col-md-6 col-sm-6">
                             <label for="sub_comand_id" class="form-label h5">OPM/Batalhão</label>
                             <select name="sub_comand_id"  id="sub_comand_id" class="form-select select2">
@@ -35,6 +35,7 @@
                                 @endforeach
                                 </select>
                                 </div>
+                               
                                 <div class="col-md-6 col-sm-6">
                                     <label for="company_id" class="form-label h5">Companhia</label>
                                     <select name="company_id"  id="company_id" class="form-select select2">
@@ -44,6 +45,8 @@
                                         @endforeach
                                         </select>
                                         </div>
+                                        --}}
+                                      
                                         <div class="col-md-6 col-sm-6">
                                             <label for="vehicle_type_id" class="form-label h5">Tipo do Veículo</label>
                                             <select name="vehicle_type_id"  id="vehicle_type_id" class="form-select select2">

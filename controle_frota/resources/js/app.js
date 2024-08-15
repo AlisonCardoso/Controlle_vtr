@@ -1,9 +1,7 @@
-
-/* Importar o arquivo bootstrap */
 import './bootstrap';
 
+import Alpine from 'alpinejs';
 
+window.Alpine = Alpine;
 
-/* Importar o JS personalizado */
-import './custom';
-
+Alpine.start();

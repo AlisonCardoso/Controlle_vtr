@@ -16,12 +16,13 @@ class CreateCompany extends Component
     public $regional_commandId;
     public $sub_commandId;
     public $sub_commands;
-    public $companies;
+   // public $sub_command;
+    public $companies = null;
     public $selectedSubCompany = null;
 
-    public function mount(RegionalCommand $regional_command )
+    public function mount()
     { 
-      //  $this->regional_command = $regional_command; 
+      
       $this->regional_command =RegionalCommand::all();
     } 
     
@@ -30,10 +31,13 @@ class CreateCompany extends Component
     
        $this->sub_commands = $this->regional_command->find($this->regional_commandId)->sub_command; 
     }
-    public function filtercompanyById(SubCommand $sub_command)
-    { 
-        //$this->companies = $this->sub_command->find($this->sub_commandId)->company; 
-        $this->companies = Company::where('sub_command_id' ,  $sub_command )->get();
+   
+    public function filtercompanyById($subCommandId)
+    {  
+       dd($this->sub_commandId);
+       //$this->companies = $this->sub_command->find($this->sub_commandId)->company;
+       // $this->companies = $this->sub_command->find($this->sub_commandId)->company; 
+      $this->companies = Company::where('sub_command_id' ,  $subCommandId)->get();
 
        
     }

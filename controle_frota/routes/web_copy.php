@@ -1,6 +1,4 @@
 <?php
-
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\WorkshopController;
@@ -11,23 +9,13 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubCommandController;
 use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-
 
     Route::resources(['contas'=> ContaController::class]);
 //Route::resources(['customers'=> CustomerController::class]);
@@ -70,7 +58,3 @@ Route::get('/gerar-pdf-conta', [ContaController::class, 'gerarPdf'])->name('cont
 Route::get('/gerar-csv-conta', [ContaController::class, 'gerarCsv'])->name('conta.gerar-csv');
 
 Route::get('/gerar-word-conta', [ContaController::class, 'gerarWord'])->name('conta.gerar-word');
-
-});
-
-require __DIR__.'/auth.php';

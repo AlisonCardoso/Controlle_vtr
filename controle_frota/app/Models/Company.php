@@ -13,7 +13,7 @@ class Company extends Model
 
     public function sub_command()
     {
-        return $this->belongsTo(subCommand::class);
+        return $this->belongsTo(SubCommand::class);
     }
 
 }
