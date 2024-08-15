@@ -8,23 +8,27 @@ use App\Models\City;
 
 class LocationForm extends Component
 {
-    public $states;
-    public $cities = [];
-    public $selectedState = null;
-    public $selectedCity = null;
 
-    public function mount()
+    public $state;
+    public $cities = null;
+    public $stateId;
+   
+    public function mount(State $state)
     {
         // Carrega todos os estados ao inicializar o componente
-        $this->states = State::all();
+        $this->state = $state;
     }
 
-    public function updatedSelectedState($stateId)
+
+    public function filterCityByStateId()
     {
-        // Atualiza as cidades quando o estado selecionado muda
-        $this->cities = City::where('state_id', $stateId)->get();
-        $this->selectedCity = null; // Reseta a cidade selecionada
+       // dd($this->stateId);
+        $this->cities = $this->state->find($this->stateId)->city;
+      // $this->realEstates = $this->category->find($this->categoryId)->realEstate;
+       
+      
     }
+
 
     public function render()
     {

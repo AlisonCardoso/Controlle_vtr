@@ -1,24 +1,28 @@
+ <div class="card-body row g-4">
+         <h2 class=""> filtro de Estado</h2>
+        <div class="col-md-5">
 
-    <div class="card-body row g-4">
-        <div class="col-md-4">
-        <label for="state_id" class="form-label h5">Estado</label>
-            <select wire:model="selectedState" name="state_id"  id="state_id" class="form-select">
-                <option selected>Selecione</option>
-                @foreach ($states as $state)
-                <option value="{{$state->id}}">{{$state->slug}}{{ $state->name }}"--" {{ $state->id }}</option>
-                @endforeach
-            </select>
-        </div>
+    <label for="">Estados</label>
+    <select wire:model="stateId"  wire:change="filterCityByStateId"name="state_id"  id="state_id" class="form-select">
+        <option selected>Selecione uma Estado</option>
+        @foreach ($state->all() as $state)
+        <option value="{{$state->id}}">{{ $state->name }}</option>
+       @endforeach  
+    </select>
+</div>
+@if ($cities)
 
+<div class="block mb-5">
+    <label for="">Imoveis filtrados</label>
+    <select name="" id="" class=" block py-2 px-4 rounded border border-gray-600">
+        <option selected>Selecione uma produto</option>
+        @foreach ($cities as $city)
+        <option value="{{$city->id}}">{{$city->name}}</option>
+        @endforeach
+       
+    </select>
+</div>
 
-        <div class="col-md-4">
-            <label for="city_id" class="form-label h5">Cidade</label>
-            <select wire:model="selectedCity" name="city_id"  id="city_id" class="form-select">
-                <option selected>Selecione</option>
-                @foreach ($cities as $city)
-                <option value="{{$city->id}}">{{$city->name}}</option>
-                @endforeach
-                </select>
-                </div>
+@endif
 
 </div>

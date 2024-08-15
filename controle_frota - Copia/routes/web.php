@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resources(['contas'=> ContaController::class]);
+    Route::resources(['contas'=> ContaController::class]);
 
 //Route::resources(['customers'=> CustomerController::class]);
     Route::resources(['workshops'=> WorkshopController::class]);
