@@ -1,3 +1,5 @@
+
+
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -11,12 +13,13 @@ module.exports = {
        
     ],
    
-    
+    darkMode: 'selector',
     theme: {
         extend: {}
     },
     plugins: [
         require("@tailwindcss/forms"),
         require("@tailwindcss/typography"),
+       /**  require("@tailwindcss/defautTheme"),*/
     ],
 }
