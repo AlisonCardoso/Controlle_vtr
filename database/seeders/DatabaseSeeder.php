@@ -35,10 +35,10 @@ class DatabaseSeeder extends Seeder
            SeederCategoria::class,
            seederSubcategoria::class,
 
- /*
+
            Seedertipoveiculo::class,
            SeederSituacaoVeiculo::class,
-*/
+
 
 
 

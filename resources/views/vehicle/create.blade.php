@@ -1,15 +1,8 @@
-@extends('layout.master')
-
-@section('title', 'Cadastro de Oficina')
-
-@section('header-title', isset($edit) ? 'Edição de Oficina' : 'Bem-vindo ao Cadastro')
-@section('header-description', isset($edit) ? 'Atualize os dados abaixo.' : 'Preencha os campos abaixo para se cadastrar.')
-
-@section('content')
-
-
-
-
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __(' Cadastro de Oficina') }}
+        </h2>
         <div class="min-h-screen flex items-center justify-center">
             <div class="bg-gray-200 dark:bg-slate-800 p-6 rounded-lg shadow-md w-1/2 mt-5">
         @if (session()->has('success'))
@@ -20,13 +13,12 @@
     <!-- 'sub_command_id',-->
     @livewire('create-company')
 
-    
-    <!-- 'vehicle_type_id',-->
+     <!-- 'vehicle_type_id',-->
     <div class="mt-4"> 
-        <label for="type_vehicle_id"class="block font-medium text-sm text-gray-700 dark:text-gray-200">
+        <label for="vehicle_type_id"class="block font-medium text-sm text-gray-700 dark:text-gray-200">
             TIPO DO VEÍCULO
         </label>
-        <select name="type_vehicle_id" id="type_vehicle_id" 
+        <select name="vehicle_type_id" id="vehicle_type_id" 
         class="mt-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />   	
     <option selected>TIPO DE VEÍCULO</option>
             @foreach ($vehicle_type->all() as $type)
@@ -34,14 +26,12 @@
            @endforeach  
         </select>
         </div>
-
-
-         <!-- 'type_vehicle_id',-->
+         <!-- 'vehicle_type_id',-->
     <div class="mt-4"> 
-        <label for="type_vehicle_id"class="block font-medium text-sm text-gray-700 dark:text-gray-200">
+        <label for="vehicle_type_id"class="block font-medium text-sm text-gray-700 dark:text-gray-200">
             TIPO DO VEÍCULO
         </label>
-        <select name="type_vehicle_id" id="type_vehicle_id" 
+        <select name="vehicle_type_id" id="vehicle_type_id" 
         class="mt-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />   	
     <option selected>SITUAÇÃO DO VEÍCULO</option>
             @foreach ($situation_vehicle->all() as $situation)
@@ -130,4 +120,4 @@
                    
          </div>
       </div>
-@endsection
+</x-app-layout>

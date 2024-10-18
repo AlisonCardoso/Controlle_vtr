@@ -43,7 +43,7 @@ class VehicleController extends Controller
         $vehicle_type = TypeVehicle::all();
         $situation_vehicle = SituationVehicle::all();
         $sub_command = SubCommand::all();
-        return view('vehicle.form', compact('vehicle_type','sub_command','title','situation_vehicle'));
+        return view('vehicle.create', compact('vehicle_type','sub_command','title','situation_vehicle'));
  
    
         //return view('vehicle.form');
