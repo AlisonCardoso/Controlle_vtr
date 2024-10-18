@@ -15,6 +15,7 @@
  
  
             @livewire('buscar-cnpj')
+            @livewire('buscar-cep')
 
             {{--  aqui serao inseridos os inputs do livewire--}}
 
@@ -31,6 +32,9 @@
                 @error('complement') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
             </div>
+          
+          
+       
 
             <div class="mt-6 flex justify-end">
                 <a href="{{ route('workshops.index') }}" class="px-4 py-2 bg-gray-600 text-white rounded-md">Cancelar</a>
